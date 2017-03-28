@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+
+</h:head>
+<h:body>
+
+	<p:panelGrid style="width:100%;height:100%;border:0">
+		<h:form>
+			<p:row>
+				<h:column style="text-align: center;">
+					<p:commandButton value="all books"
+						update=":#{p:component('customerTableForm')}"
+						actionListener="#{testRestController.getBooks}"></p:commandButton>
+				</h:column>
+			</p:row>
+			<p:row>
+				<h:column style="text-align:center">
+					<p:inputText
+						value="#{testRestController.mainBean.searchBean.writerId}"></p:inputText>
+					<p:commandButton value="all books by author id"
+						update=":#{p:component('customerTableForm')}"
+						actionListener="#{testRestController.getBooksByAuthor}"></p:commandButton>
+				</h:column>
+			</p:row>
+		</h:form>
+	</p:panelGrid>
+	<p:dataTable id="customerTableForm" var="book"
+		value="#{testRestController.mainBean.tableRowBeanList}">
+
+		<p:column headerText="BookName">
+			<h:outputText value="#{book.bookname}" />
+		</p:column>
+		<p:column headerText="Price">
+			<h:outputText value="#{book.price}" />
+		</p:column>
+		<p:column headerText="Writer">
+			<h:outputText value="#{book.writerSurname}" />
+		</p:column>
+
+	</p:dataTable>
+
+</h:body>
+</html>
